@@ -1,16 +1,37 @@
 // Your code here
-function map(arr, callArray) {
-let result = [];
-for (let i = 0; i < arr.length; i++) {
-result.push(callArray(arr[i]));
+function mapToNegativize(sourceArray){
+    return sourceArray.map(x => x * -1);
 }
-return result;
+function mapToNoChange(sourceArray){
+    return sourceArray.map(x => x);
 }
-function reduce(arr, callArray, start) {
-let accArray = start ? start : arr[0];
-let i = start ? 0 : 1;
-for (; i < arr.length; i++) {
-accArray = callArray(arr[i], accArray);
+function mapToDouble(sourceArray){
+    return sourceArray.map(x => x*2);
 }
-return accArray;
+function mapToSquare(sourceArray){
+    return sourceArray.map(x => x*x);
 }
+function reduceToTotal(sourceArray, startingPoint = 0){
+    const reducer = function(accumulator, currentValue){ return accumulator + currentValue }
+    return sourceArray.reduce(reducer, startingPoint)
+}
+function reduceToAllTrue(sourceArray){
+const reducer = function(accumulator, currentValue){
+  if(!!accumulator == true && !!currentValue == true){
+  return true;
+  } else {
+  return false;
+    }
+    }
+  return sourceArray.reduce(reducer, true)
+}
+function reduceToAnyTrue(sourceArray){
+  const reducer = function(accumulator, currentValue){
+  if(accumulator == true){
+  return true
+  } else {
+    return !!currentValue
+    }
+    }
+    return sourceArray.reduce(reducer, false)
+     }
